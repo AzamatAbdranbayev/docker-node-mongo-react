@@ -1,0 +1,30 @@
+version: "3.1"
+
+services:
+  backend:
+    env_file: "./.env"
+    build:
+      context: ./Back_Node.js
+      dockerfile: ./Dockerfile
+    restart: always
+    environment:
+      REACT_APP_FRONT_PORT: 5001
+    links:
+      - mongo
+    ports:
+      - "5000:8000"
+
+  frontend:
+    build:
+      context: ./Front_React_Redux
+      dockerfile: ./Dockerfile
+
+    environment:
+      REACT_APP_BACK_PORT: 5000
+    ports:
+      - "5001:3000"
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
