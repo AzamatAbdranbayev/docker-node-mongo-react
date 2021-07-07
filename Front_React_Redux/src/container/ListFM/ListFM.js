@@ -15,27 +15,43 @@ const ListFM = () => {
   return (
     <div className="site-card-wrapper">
       <Row gutter={16}>
-        {listFm.map((element, index) => (
-          <Col span={6} key={index} className="gutter-row">
-            <Card
-              hoverable
-              style={{ maxWidth: "200px", margin: "15px" }}
-              cover={
-                <img
-                  onError={(e) => {
-                    e.target.onError = null;
-                    e.target.src = baseImg;
-                  }}
-                  alt="artists"
-                  src={baseUrl + "/uploads/" + element.photo}
-                />
-              }
-            >
-              <Meta title={element.name} description={element.information} />
-              <NavLink to={"/artist/" + element._id}>Show more...</NavLink>
-            </Card>
-          </Col>
-        ))}
+        {listFm.map((element, index) => {
+          {
+            console.log("2pacimage");
+          }
+          {
+            console.log(baseUrl + "/uploads/" + element.photo);
+          }
+          {
+            console.log("zagluwka");
+          }
+          {
+            console.log(baseImg);
+          }
+          return (
+            <Col span={6} key={index} className="gutter-row">
+              <div>{baseUrl + "/uploads/" + element.photo}</div>
+              <div>{baseImg}</div>
+              <Card
+                hoverable
+                style={{ maxWidth: "200px", margin: "15px" }}
+                cover={
+                  <img
+                    onError={(e) => {
+                      e.target.onError = null;
+                      e.target.src = baseImg;
+                    }}
+                    alt="artists"
+                    src={"http://localhost:5000" + "/uploads/" + element.photo}
+                  />
+                }
+              >
+                <Meta title={element.name} description={element.information} />
+                <NavLink to={"/artist/" + element._id}>Show more...</NavLink>
+              </Card>
+            </Col>
+          );
+        })}
       </Row>
     </div>
   );

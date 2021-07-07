@@ -7,7 +7,11 @@ const Track = require("./app/models/Track");
 const TrackHistory = require("./app/models/TrackHistory");
 const User = require("./app/models/User");
 
-mongoose.connect(config.db.url + "/" + config.db.name);
+mongoose.connect(`${config.db.url}/${config.db.name}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
 
 const db = mongoose.connection;
 

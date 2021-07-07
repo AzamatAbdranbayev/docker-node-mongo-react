@@ -4,10 +4,11 @@ WORKDIR /usr/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install 
 
 COPY . .
 
 EXPOSE 8000
 
-CMD ["node", "server.js"]
+CMD node fixtures.js; node server.js
+
